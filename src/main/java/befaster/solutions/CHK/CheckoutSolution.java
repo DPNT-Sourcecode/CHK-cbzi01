@@ -31,22 +31,47 @@ public class CheckoutSolution {
         return skusCount;
     }
 
+//    private int calculatePrice(char sku, int count, int startingPrice) {
+//        int totalPrice = startingPrice;
+//        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+//            if (specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems()) {
+//                if(count % specialOffer.getNumberOfItems() != 0) {
+//                    int newCount = count - specialOffer.getNumberOfItems();
+//                    totalPrice += calculatePrice(sku, newCount, specialOffer.getSpecialPrice());
+//                } else {
+//                    totalPrice += specialOffer.getSpecialPrice();
+//                }
+//            } else {
+//                totalPrice += StockKeepingUnits.getStockKeepingPrice(sku) * count;
+//            }
+//        }
+//        return totalPrice;
+//    }
+
     private int calculatePrice(char sku, int count, int startingPrice) {
         int totalPrice = startingPrice;
+        boolean foundSpecialOffer = false;
+
         for (SpecialOffers specialOffer : SpecialOffers.values()) {
             if (specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems()) {
-                if(count % specialOffer.getNumberOfItems() != 0) {
+                if (count % specialOffer.getNumberOfItems() != 0) {
                     int newCount = count - specialOffer.getNumberOfItems();
                     totalPrice += calculatePrice(sku, newCount, specialOffer.getSpecialPrice());
                 } else {
                     totalPrice += specialOffer.getSpecialPrice();
                 }
-            } else {
-                totalPrice += StockKeepingUnits.getStockKeepingPrice(sku) * count;
+                foundSpecialOffer = true;
+                break;  // Break out of the loop once a special offer is found
             }
         }
+
+        if (!foundSpecialOffer) {
+            totalPrice += StockKeepingUnits.getStockKeepingPrice(sku) * count;
+        }
+
         return totalPrice;
     }
 }
+
 
 
