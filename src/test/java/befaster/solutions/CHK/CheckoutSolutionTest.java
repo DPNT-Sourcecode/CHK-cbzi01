@@ -13,10 +13,42 @@ class CheckoutSolutionTest {
         int expectedResult = 50;
 
         assertEquals(expectedResult, result);
-//        assertEquals(80, checkoutSolution.checkout("AB"));
-//        assertEquals(115, checkoutSolution.checkout("CDBA"));
-//        assertEquals(100, checkoutSolution.checkout("AA"));
-//        assertEquals(130, checkoutSolution.checkout("AAA"));
+    }
+
+    @Test
+    void testIfWhenCheckoutWithTwoDifferentItensItgetsTheCorrectValue() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("AB");
+        int expectedResult = 80;
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testIfWhenCheckoutWithFourDifferentItensItgetsTheCorrectValue() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("CDBA");
+        int expectedResult = 115;
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testIfWhenCheckoutWithTwoEqualItensItgetsTheCorrectValue() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("AA");
+        int expectedResult = 100;
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testIfWhenCheckoutWithThreeEqualItensItgetsTheSpecialPrice() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("AAA");
+        int expectedResult = 130;
+
+        assertEquals(expectedResult, result);
 //        assertEquals(180, checkoutSolution.checkout("AAAA"));
 //        assertEquals(230, checkoutSolution.checkout("AAAAA"));
 //        assertEquals(260, checkoutSolution.checkout("AAAAAA"));
@@ -29,15 +61,12 @@ class CheckoutSolutionTest {
     }
 
     @Test
-    void testIfWhenCheckoutWithTwoDifferentItensItgetsTheCorrectValue() {
+    void testIfWhenCheckoutWithFourEqualItensItgetsTheSpecialPricePlusTheOriginalPrice() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        int result = checkoutSolution.checkout("AB");
-        int expectedResult = 80;
+        int result = checkoutSolution.checkout("AAAA");
+        int expectedResult = 180;
 
         assertEquals(expectedResult, result);
-//        assertEquals(115, checkoutSolution.checkout("CDBA"));
-//        assertEquals(100, checkoutSolution.checkout("AA"));
-//        assertEquals(130, checkoutSolution.checkout("AAA"));
 //        assertEquals(180, checkoutSolution.checkout("AAAA"));
 //        assertEquals(230, checkoutSolution.checkout("AAAAA"));
 //        assertEquals(260, checkoutSolution.checkout("AAAAAA"));
@@ -49,4 +78,5 @@ class CheckoutSolutionTest {
 //        assertEquals(-1, checkoutSolution.checkout("E"));
     }
 }
+
 
