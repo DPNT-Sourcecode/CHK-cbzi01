@@ -35,5 +35,15 @@ public enum SpecialOffers {
         return false;
     }
 
+    public static SpecialOffers getSpecialOffer(final char sku) {
+        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+            if (specialOffer.getSku() == sku) {
+                return specialOffer;
+            }
+        }
+        return null;
+    }
+
 }
+
 

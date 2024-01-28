@@ -37,7 +37,10 @@ public class CheckoutSolution {
             return StockKeepingUnits.getStockKeepingPrice(sku) * count;
         }
 
-        int totalPrice = 0;/
+        int totalPrice = 0;
+
+
+
         for (SpecialOffers specialOffer : SpecialOffers.values()) {
             if (specialOffer.getSku() != sku) {
                 continue;
@@ -60,5 +63,6 @@ public class CheckoutSolution {
 
 
 }
+
 
 
