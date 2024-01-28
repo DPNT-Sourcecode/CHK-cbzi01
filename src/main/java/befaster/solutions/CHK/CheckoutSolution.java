@@ -62,13 +62,15 @@ public class CheckoutSolution {
                 int newCount = count / specialOffer.getNumberOfItems(); //How many special offers I can find
                 totalPrice += specialOffer.getSpecialPrice() * newCount;
             } else {
-                
+                int newCount = count - specialOffer.getNumberOfItems();
+                totalPrice += calculatePrice(sku, newCount, )
             }
 
         }
         return totalPrice;
     }
 }
+
 
 
 
