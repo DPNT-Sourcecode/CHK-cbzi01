@@ -60,12 +60,13 @@ public class CheckoutSolution {
 
     private int calculatePrice(char sku, int count) {
         SpecialOffers specialOffer = SpecialOffers.getSpecialOffer(sku);
+        boolean hasSpecialOffer = Objects.nonNull(specialOffer) && count >= specialOffer.getNumberOfItems();
 
-        if(Objects.isNull(specialOffer)) {
+        if(!hasSpecialOffer) {
             return StockKeepingUnits.getStockKeepingPrice(sku) * count;
         }
 
-        int totalPrice = 0;
+        int totalPrice;
 
         if (count % specialOffer.getNumberOfItems() == 0) {
             int numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
@@ -79,10 +80,3 @@ public class CheckoutSolution {
     }
 
 }
-
-
-
-
-
-
-
