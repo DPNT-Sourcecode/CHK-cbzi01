@@ -49,15 +49,6 @@ class CheckoutSolutionTest {
         int expectedResult = 130;
 
         assertEquals(expectedResult, result);
-//        assertEquals(180, checkoutSolution.checkout("AAAA"));
-//        assertEquals(230, checkoutSolution.checkout("AAAAA"));
-//        assertEquals(260, checkoutSolution.checkout("AAAAAA"));
-//        assertEquals(160, checkoutSolution.checkout("AAAB"));
-//        assertEquals(175, checkoutSolution.checkout("AAABB"));
-//        assertEquals(190, checkoutSolution.checkout("AAABBD"));
-//        assertEquals(190, checkoutSolution.checkout("DABABA"));
-//        assertEquals(190, checkoutSolution.checkout("DABABA"));
-//        assertEquals(-1, checkoutSolution.checkout("E"));
     }
 
     @Test
@@ -67,10 +58,47 @@ class CheckoutSolutionTest {
         int expectedResult = 180;
 
         assertEquals(expectedResult, result);
-//        assertEquals(180, checkoutSolution.checkout("AAAA"));
-//        assertEquals(230, checkoutSolution.checkout("AAAAA"));
-//        assertEquals(260, checkoutSolution.checkout("AAAAAA"));
-//        assertEquals(160, checkoutSolution.checkout("AAAB"));
+    }
+
+    @Test
+    void testIfWhenCheckoutWithFiveEqualItensItgetsTheSpecialPricePlusTheOriginalPrice() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("AAAAA");
+        int expectedResult = 230;
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testIfWhenCheckoutWithSixEqualItensItgetsTheSpecialPricePlusTheOriginalPrice() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("AAAAAA");
+        int expectedResult = 260;
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testIfWhenCheckoutWithThreeEqualItensAndOneDifferentItemItGetsTheSpecialPricePlusTheOriginalPrice() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("AAAB");
+        int expectedResult = 160;
+
+        assertEquals(expectedResult, result);
+//        assertEquals(175, checkoutSolution.checkout("AAABB"));
+//        assertEquals(190, checkoutSolution.checkout("AAABBD"));
+//        assertEquals(190, checkoutSolution.checkout("DABABA"));
+//        assertEquals(190, checkoutSolution.checkout("DABABA"));
+//        assertEquals(-1, checkoutSolution.checkout("E"));
+    }
+
+    @Test
+    void testIfWhenCheckoutWithThreeEqualItensAndTwoDifferentItemItGetsTheSpecialPricePlusTheOriginalPrice() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("AAABB");
+        int expectedResult = 175;
+
+        assertEquals(expectedResult, result);
 //        assertEquals(175, checkoutSolution.checkout("AAABB"));
 //        assertEquals(190, checkoutSolution.checkout("AAABBD"));
 //        assertEquals(190, checkoutSolution.checkout("DABABA"));
@@ -78,5 +106,6 @@ class CheckoutSolutionTest {
 //        assertEquals(-1, checkoutSolution.checkout("E"));
     }
 }
+
 
 
