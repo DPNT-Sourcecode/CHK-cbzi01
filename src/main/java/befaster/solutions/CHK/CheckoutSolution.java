@@ -58,6 +58,10 @@ public class CheckoutSolution {
                  return  startingPrice + StockKeepingUnits.getStockKeepingPrice(sku) * count;
             }
 
+            if(count % specialOffer.getNumberOfItems() == 0) {
+                int newCount = count / specialOffer.getNumberOfItems();
+            }
+
             int newCount = count - specialOffer.getNumberOfItems();
             totalPrice = calculatePrice(sku, newCount, (startingPrice + specialOffer.getSpecialPrice()));
 
@@ -71,3 +75,4 @@ public class CheckoutSolution {
         return totalPrice;
     }
 }
+
