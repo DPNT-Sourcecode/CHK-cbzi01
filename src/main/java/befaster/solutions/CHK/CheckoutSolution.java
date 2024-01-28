@@ -50,34 +50,54 @@ public class CheckoutSolution {
 //    }
 
 
-    private int getSpecialPriceFromSku(final char sku) {
-        for (SpecialOffers specialOffer : SpecialOffers.values()) {
-            if (specialOffer.getSku() == sku) {
-                return specialOffer.getSpecialPrice();
-            }
-        }
-        return StockKeepingUnits.getStockKeepingPrice(sku);
-    }
-
-    private int getHowManySpecialOffersICanFind(final char sku, final int count) {
-        int numberOfSpecialOffers = 0;
-        for (SpecialOffers specialOffer : SpecialOffers.values()) {
-            if (specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems()) {
-                if(count % specialOffer.getNumberOfItems() == 0) {
-                    numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
-                } else {
-                    numberOfSpecialOffers = count - specialOffer.getNumberOfItems();
-                }
-            }
-        }
-        return numberOfSpecialOffers;
-    }
+//    private int getSpecialPriceFromSku(final char sku, final int count) {
+//        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+//            if (specialOffer.getSku() == sku) {
+//                return specialOffer.getSpecialPrice();
+//            }
+//        }
+//        return StockKeepingUnits.getStockKeepingPrice(sku);
+//    }
+//
+//    private int getHowManySpecialOffersICanFind(final char sku, final int count) {
+//        int numberOfSpecialOffers = 0;
+//        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+//            if (specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems()) {
+//                if(count % specialOffer.getNumberOfItems() == 0) {
+//                    numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
+//                } else {
+//                    numberOfSpecialOffers = count - specialOffer.getNumberOfItems();
+//                }
+//            }
+//        }
+//        return numberOfSpecialOffers;
+//    }
 
 
     private int calculatePrice(char sku, int count) {
-        return getSpecialPriceFromSku(sku) * getHowManySpecialOffersICanFind(sku, count);
+        int totalPrice = 0;
+        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+            if (specialOffer.getSku() != sku || count < specialOffer.getNumberOfItems()) {
+                return StockKeepingUnits.getStockKeepingPrice(sku) * count;
+            }
+
+            int numberOfSpecialOffers = 0;
+            if (count % specialOffer.getNumberOfItems() == 0) {
+                numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
+                totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers;
+                break;
+            } else {
+                numberOfSpecialOffers = specialOffer.getNumberOfItems();
+                int numberOfNonSpecialOffers = count - numberOfSpecialOffers;
+                totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers
+                        + StockKeepingUnits.getStockKeepingPrice(sku) * numberOfNonSpecialOffers;
+                break;
+            }
+        }
+        return totalPrice;
     }
 
 
-}
 
+
+}
