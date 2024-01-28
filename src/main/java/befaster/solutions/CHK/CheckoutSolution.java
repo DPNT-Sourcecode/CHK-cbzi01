@@ -80,16 +80,14 @@ public class CheckoutSolution {
             if (specialOffer.getSku() != sku || count < specialOffer.getNumberOfItems()) {
                 return StockKeepingUnits.getStockKeepingPrice(sku) * count;
             }
-
-            int numberOfSpecialOffers = 0;
+            
             if (count % specialOffer.getNumberOfItems() == 0) {
-                numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
+                int numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
                 totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers;
                 break;
             } else {
-                numberOfSpecialOffers = specialOffer.getNumberOfItems();
-                int numberOfNonSpecialOffers = count - numberOfSpecialOffers;
-                totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers
+                int numberOfNonSpecialOffers = count - specialOffer.getSpecialPrice();
+                totalPrice = specialOffer.getSpecialPrice()
                         + StockKeepingUnits.getStockKeepingPrice(sku) * numberOfNonSpecialOffers;
                 break;
             }
@@ -101,3 +99,4 @@ public class CheckoutSolution {
 
 
 }
+
