@@ -50,30 +50,31 @@ public class CheckoutSolution {
 
     private int calculatePrice(char sku, int count) {
         int totalPrice = 0;
-        boolean foundSpecialOffer;
+        boolean foundSpecialOffer = SpecialOffers.getSpecialOfferPrice(sku) != -1;
 
-        for (SpecialOffers specialOffer : SpecialOffers.values()) {
-            foundSpecialOffer = specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems();
-            if (!foundSpecialOffer) {
-                 return StockKeepingUnits.getStockKeepingPrice(sku) * count;
-            }
-
-            if(count % specialOffer.getNumberOfItems() == 0) {
-                int newCount = count / specialOffer.getNumberOfItems(); //How many special offers I can find
-                totalPrice = specialOffer.getSpecialPrice() * newCount;
-            } else {
-                int newCount = count - specialOffer.getNumberOfItems();
-                totalPrice = specialOffer.getSpecialPrice() * newCount;
-            }
-
+        if (!foundSpecialOffer) {
+            return StockKeepingUnits.getStockKeepingPrice(sku) * count;
         }
+
+
+
+//
+//        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+//            foundSpecialOffer = specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems();
+//            if (!foundSpecialOffer) {
+//                return StockKeepingUnits.getStockKeepingPrice(sku) * count;
+//            }
+//
+//            if(count % specialOffer.getNumberOfItems() == 0) {
+//                int newCount = count / specialOffer.getNumberOfItems(); //How many special offers I can find
+//                totalPrice = specialOffer.getSpecialPrice() * newCount;
+//
+//            } else {
+//                int newCount = count - specialOffer.getNumberOfItems();
+//                totalPrice = specialOffer.getSpecialPrice() * newCount;
+//            }
+//
+//        }
         return totalPrice;
     }
 }
-
-
-
-
-
-
-
