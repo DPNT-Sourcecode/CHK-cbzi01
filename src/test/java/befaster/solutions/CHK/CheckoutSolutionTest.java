@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CheckoutSolutionTest {
 
     @Test
-    void testIfWhenCheckoutWithOneItemItgetsTheCorrectValue() {
+    void testIfWhenCheckoutWithOneItemItgetsTheCorrectPrice() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         int result = checkoutSolution.checkout("A");
         int expectedResult = 50;
@@ -16,7 +16,7 @@ class CheckoutSolutionTest {
     }
 
     @Test
-    void testIfWhenCheckoutWithTwoDifferentItensItgetsTheCorrectValue() {
+    void testIfWhenCheckoutWithTwoDifferentItensItgetsTheCorrectPrice() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         int result = checkoutSolution.checkout("AB");
         int expectedResult = 80;
@@ -25,7 +25,7 @@ class CheckoutSolutionTest {
     }
 
     @Test
-    void testIfWhenCheckoutWithFourDifferentItensItgetsTheCorrectValue() {
+    void testIfWhenCheckoutWithFourDifferentItensItgetsTheCorrectPrice() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         int result = checkoutSolution.checkout("CDBA");
         int expectedResult = 115;
@@ -34,7 +34,7 @@ class CheckoutSolutionTest {
     }
 
     @Test
-    void testIfWhenCheckoutWithTwoEqualItensItgetsTheCorrectValue() {
+    void testIfWhenCheckoutWithTwoEqualItensItgetsTheCorrectPrice() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         int result = checkoutSolution.checkout("AA");
         int expectedResult = 100;
@@ -112,8 +112,6 @@ class CheckoutSolutionTest {
         int expectedResult = 190;
 
         assertEquals(expectedResult, result);
-//        assertEquals(190, checkoutSolution.checkout("DABABA"));
-//        assertEquals(-1, checkoutSolution.checkout("E"));
     }
 
     @Test
@@ -123,11 +121,10 @@ class CheckoutSolutionTest {
         int expectedResult = -1;
 
         assertEquals(expectedResult, result);
-//        assertEquals(190, checkoutSolution.checkout("DABABA"));
-//        assertEquals(-1, checkoutSolution.checkout("E"));
     }
 
 }
+
 
 
 
