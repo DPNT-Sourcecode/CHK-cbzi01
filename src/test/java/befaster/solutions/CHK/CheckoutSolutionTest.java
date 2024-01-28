@@ -115,15 +115,25 @@ class CheckoutSolutionTest {
     }
 
     @Test
-    void testIfWhenCheckoutWithInvsalidItenItGetsNegativeOne() {
+    void testIfWhenCheckoutWithInvalidItenItGetsNegativeOne() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         int result = checkoutSolution.checkout("E");
         int expectedResult = -1;
 
         assertEquals(expectedResult, result);
     }
+    @Test
+    void testIfWhenCheckoutWithMultipleDifferentsItensItGetsCorrectPrice() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("ABCDCBAABCABBAAA");
+        int expectedResult = 505;
+
+        assertEquals(expectedResult, result);
+    }
+
 
 }
+
 
 
 
