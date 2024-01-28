@@ -59,20 +59,15 @@ public class CheckoutSolution {
             }
 
             if(count % specialOffer.getNumberOfItems() == 0) {
-                int newCount = count / specialOffer.getNumberOfItems();
+                int newCount = count / specialOffer.getNumberOfItems(); //How many special offers I can find
+                totalPrice = specialOffer.getSpecialPrice() * newCount;
+            } else {
+                
             }
 
-            int newCount = count - specialOffer.getNumberOfItems();
-            totalPrice = calculatePrice(sku, newCount, (startingPrice + specialOffer.getSpecialPrice()));
-
-//            if (count > specialOffer.getNumberOfItems()) {
-//                int newCount = count - specialOffer.getNumberOfItems();
-//                totalPrice = startingPrice + calculatePrice(sku, newCount, specialOffer.getSpecialPrice());
-//            } else {
-//                totalPrice = startingPrice + specialOffer.getSpecialPrice();
-//            }
         }
         return totalPrice;
     }
 }
+
 
