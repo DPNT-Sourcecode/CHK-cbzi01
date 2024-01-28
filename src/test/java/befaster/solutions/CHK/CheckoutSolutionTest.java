@@ -14,7 +14,7 @@ class CheckoutSolutionTest {
         //assertEquals(115, checkoutSolution.checkout("CDBA"));
         //assertEquals(100, checkoutSolution.checkout("AA"));
         assertEquals(130, checkoutSolution.checkout("AAA"));
-        //assertEquals(180, checkoutSolution.checkout("AAAA"));
+        assertEquals(180, checkoutSolution.checkout("AAAA"));
         //assertEquals(230, checkoutSolution.checkout("AAAAA"));
         //assertEquals(260, checkoutSolution.checkout("AAAAAA"));
         //assertEquals(160, checkoutSolution.checkout("AAAB"));
@@ -25,5 +25,6 @@ class CheckoutSolutionTest {
         //assertEquals(-1, checkoutSolution.checkout("E"));
     }
 }
+
 
 

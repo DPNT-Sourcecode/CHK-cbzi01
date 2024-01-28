@@ -36,17 +36,16 @@ public class CheckoutSolution {
         for (SpecialOffers specialOffer : SpecialOffers.values()) {
             if (specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems()) {
                 if(count % specialOffer.getNumberOfItems() == 0) {
-                    specialPrice = specialOffer.getSpecialPrice();
-                    break;
+                    return specialOffer.getSpecialPrice();
+                } else{
+                    
                 }
             }
-            else {
-                specialPrice = StockKeepingUnits.getStockKeepingPrice(sku) * count;
-            }
         }
-        return specialPrice;
+        return  StockKeepingUnits.getStockKeepingPrice(sku) * count;
     }
 }
+
 
 
 
