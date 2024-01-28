@@ -38,24 +38,26 @@ public class CheckoutSolution {
         }
 
         int totalPrice = 0;
+        SpecialOffers specialOffer = SpecialOffers.valueOf("A");
+        specialOffer.getSpecialPrice();
 
 
 
-        for (SpecialOffers specialOffer : SpecialOffers.values()) {
-            if (specialOffer.getSku() != sku) {
-                continue;
-            }
-            if (count % specialOffer.getNumberOfItems() == 0) {
-                int numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
-                totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers;
-                break;
-            } else {
-                int numberOfNonSpecialOffers = count - specialOffer.getNumberOfItems();
-                totalPrice = specialOffer.getSpecialPrice()
-                        + StockKeepingUnits.getStockKeepingPrice(sku) * numberOfNonSpecialOffers;
-                break;
-            }
-        }
+//        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+//            if (specialOffer.getSku() != sku) {
+//                continue;
+//            }
+//            if (count % specialOffer.getNumberOfItems() == 0) {
+//                int numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
+//                totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers;
+//                break;
+//            } else {
+//                int numberOfNonSpecialOffers = count - specialOffer.getNumberOfItems();
+//                totalPrice = specialOffer.getSpecialPrice()
+//                        + StockKeepingUnits.getStockKeepingPrice(sku) * numberOfNonSpecialOffers;
+//                break;
+//            }
+//        }
         return totalPrice;
     }
 
@@ -63,6 +65,7 @@ public class CheckoutSolution {
 
 
 }
+
 
 
 
