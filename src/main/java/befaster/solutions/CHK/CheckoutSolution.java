@@ -38,17 +38,15 @@ public class CheckoutSolution {
                 if(count % specialOffer.getNumberOfItems() != 0) {
                     int newCount = count - specialOffer.getNumberOfItems();
                     totalPrice += calculatePrice(sku, newCount, specialOffer.getSpecialPrice());
-                    break;
                 } else {
                     totalPrice += specialOffer.getSpecialPrice();
-                    break;
                 }
             } else {
                 totalPrice += StockKeepingUnits.getStockKeepingPrice(sku) * count;
-                break;
             }
         }
         return totalPrice;
     }
 }
+
 
