@@ -77,7 +77,7 @@ public class CheckoutSolution {
     private int calculatePrice(char sku, int count) {
         int totalPrice = 0;
         for (SpecialOffers specialOffer : SpecialOffers.values()) {
-            if (specialOffer.getSku() != sku || count < specialOffer.getNumberOfItems()) {
+            if (!(specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems())) {
                 return StockKeepingUnits.getStockKeepingPrice(sku) * count;
             }
 
@@ -99,5 +99,6 @@ public class CheckoutSolution {
 
 
 }
+
 
 
