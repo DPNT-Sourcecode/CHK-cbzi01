@@ -1,28 +1,22 @@
 package befaster.solutions.CHK;
 
-import befaster.runner.SolutionNotImplementedException;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        int totalSum = 0;
-        //List<Character> skusCount =
-
         Map<Character, Integer> skusCount = groupAndCountNumberOfSameSkus(skus);
 
-        skusCount.forEach((
-
-        for (char sku : skus.toCharArray()) {
+        int totalSum = 0;
+        for (Map.Entry<Character, Integer> entry : skusCount.entrySet()) {
+            char sku = entry.getKey();
+            int count = entry.getValue();
             if (StockKeepingUnits.getStockKeepingPrice(sku) == -1) {
                 return -1;
             }
-
-            totalSum += StockKeepingUnits.getStockKeepingPrice(sku);
+            totalSum += calculatePrice(sku, count);
         }
-
+        return totalSum;
     }
 
     private Map<Character, Integer> groupAndCountNumberOfSameSkus(final String skus) {
@@ -36,5 +30,16 @@ public class CheckoutSolution {
         }
         return skusCount;
     }
-}
 
+    private int calculatePrice(char sku, int count) {
+        int specialPrice = 0;
+        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+            if (specialOffer.getSku() == sku && count == specialOffer.getNumberOfItems()) {
+                return specialOffer.getSpecialPrice();
+            } else {
+                specialPrice = StockKeepingUnits.getStockKeepingPrice(sku) * count;
+            }
+        }
+        return specialPrice;
+    }
+}

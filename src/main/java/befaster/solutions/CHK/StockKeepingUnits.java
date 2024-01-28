@@ -31,4 +31,3 @@ public enum StockKeepingUnits {
         return -1;
     }
 }
-
