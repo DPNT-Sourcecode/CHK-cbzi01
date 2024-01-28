@@ -46,15 +46,16 @@ public class CheckoutSolution {
             int numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
             totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers;
         } else {
-            var numberOfSpecialOffers = Math.floorDiv(count, specialOffer.getNumberOfItems());
+            int numberOfSpecialOffers = Math.floorDiv(count, specialOffer.getNumberOfItems());
             int numberOfNonSpecialOffers = count - specialOffer.getNumberOfItems();
-            totalPrice = specialOffer.getSpecialPrice()
+            totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers
                     + StockKeepingUnits.getStockKeepingPrice(sku) * numberOfNonSpecialOffers;
         }
         return totalPrice;
     }
 
 }
+
 
 
 
