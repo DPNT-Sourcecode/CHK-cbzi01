@@ -133,9 +133,3 @@ class CheckoutSolutionTest {
 
 
 }
-
-
-
-
-
-
