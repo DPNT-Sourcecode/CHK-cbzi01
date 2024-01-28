@@ -26,21 +26,6 @@ public enum SpecialOffers {
         return specialPrice;
     }
 
-    public static int getnumberOfSpecialOffer(final char sku, final int count) {
-        int numberOfSpecialOffers = 0;
-        for (SpecialOffers specialOffer : SpecialOffers.values()) {
-            if (specialOffer.getSku() != sku) {
-                continue;
-            }
-            if (count % specialOffer.getNumberOfItems() == 0) {
-                numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
-            } else {
-                numberOfSpecialOffers = specialOffer.getNumberOfItems();
-            }
-        }
-        return numberOfSpecialOffers;
-    }
-
     public static boolean hasSpecialOffer(final char sku, final int count) {
         for (SpecialOffers specialOffer : SpecialOffers.values()) {
             if (specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems()) {
@@ -51,3 +36,4 @@ public enum SpecialOffers {
     }
 
 }
+
