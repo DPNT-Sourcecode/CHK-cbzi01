@@ -14,7 +14,7 @@ public class CheckoutSolution {
             if (StockKeepingUnits.getStockKeepingPrice(sku) == -1) {
                 return -1;
             }
-            totalSum += calculatePrice(sku, count);
+            totalSum += calculatePrice(sku, count, 0);
         }
         return totalSum;
     }
@@ -31,13 +31,14 @@ public class CheckoutSolution {
         return skusCount;
     }
 
-    private int calculatePrice(char sku, int count) {
-        int totalPrice = 0;
+    private int calculatePrice(char sku, int count, int startingPrice) {
+        int totalPrice = startingPrice;
         for (SpecialOffers specialOffer : SpecialOffers.values()) {
             if (specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems()) {
                 if(count % specialOffer.getNumberOfItems() != 0) {
+                    totalPrice = specialOffer.getSpecialPrice();
                     int newCount = count - specialOffer.getNumberOfItems();
-                    totalPrice += calculatePrice(sku, newCount);
+                    totalPrice += calculatePrice(sku, newCount, totalPrice);
                 } else {
                     totalPrice = specialOffer.getSpecialPrice();
                     break;
@@ -47,14 +48,6 @@ public class CheckoutSolution {
                 break;
             }
         }
-        return  totalPrice;
+        return totalPrice;
     }
 }
-
-
-
-
-
-
-
-
