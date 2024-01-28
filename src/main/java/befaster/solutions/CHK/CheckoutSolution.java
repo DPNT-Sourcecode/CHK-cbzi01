@@ -48,28 +48,29 @@ public class CheckoutSolution {
 //        return totalPrice;
 //    }
 
-    private int calculatePrice(char sku, int count, int startingPrice) {
-        int totalPrice = startingPrice;
+    private int calculatePrice(char sku, int count) {
+        int totalPrice = 0;
         boolean foundSpecialOffer;
 
         for (SpecialOffers specialOffer : SpecialOffers.values()) {
-            foundSpecialOffer = specialOffer.getSku() == sku && count == specialOffer.getNumberOfItems();
+            foundSpecialOffer = specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems();
             if (!foundSpecialOffer) {
                  return StockKeepingUnits.getStockKeepingPrice(sku) * count;
             }
 
             if(count % specialOffer.getNumberOfItems() == 0) {
                 int newCount = count / specialOffer.getNumberOfItems(); //How many special offers I can find
-                totalPrice += specialOffer.getSpecialPrice() * newCount;
+                totalPrice = specialOffer.getSpecialPrice() * newCount;
             } else {
                 int newCount = count - specialOffer.getNumberOfItems();
-                totalPrice += calculatePrice(sku, newCount, )
+                totalPrice = specialOffer.getSpecialPrice() * newCount;
             }
 
         }
         return totalPrice;
     }
 }
+
 
 
 
