@@ -32,19 +32,20 @@ public class CheckoutSolution {
     }
 
     private int calculatePrice(char sku, int count) {
-        int specialPrice = 0;
         for (SpecialOffers specialOffer : SpecialOffers.values()) {
             if (specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems()) {
-                if(count % specialOffer.getNumberOfItems() == 0) {
+                if(count % specialOffer.getNumberOfItems() != 0) {
+                    int newCount = count - specialOffer.getNumberOfItems();
+                    return calculatePrice(sku, newCount);
+                } else {
                     return specialOffer.getSpecialPrice();
-                } else{
-                    
                 }
             }
         }
         return  StockKeepingUnits.getStockKeepingPrice(sku) * count;
     }
 }
+
 
 
 
