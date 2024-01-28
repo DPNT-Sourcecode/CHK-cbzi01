@@ -80,13 +80,13 @@ public class CheckoutSolution {
             if (specialOffer.getSku() != sku || count < specialOffer.getNumberOfItems()) {
                 return StockKeepingUnits.getStockKeepingPrice(sku) * count;
             }
-            
+
             if (count % specialOffer.getNumberOfItems() == 0) {
                 int numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
                 totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers;
                 break;
             } else {
-                int numberOfNonSpecialOffers = count - specialOffer.getSpecialPrice();
+                int numberOfNonSpecialOffers = count - specialOffer.getNumberOfItems();
                 totalPrice = specialOffer.getSpecialPrice()
                         + StockKeepingUnits.getStockKeepingPrice(sku) * numberOfNonSpecialOffers;
                 break;
@@ -99,4 +99,5 @@ public class CheckoutSolution {
 
 
 }
+
 
