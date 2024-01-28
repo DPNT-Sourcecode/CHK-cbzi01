@@ -58,19 +58,16 @@ public class CheckoutSolution {
                  return  startingPrice + StockKeepingUnits.getStockKeepingPrice(sku) * count;
             }
 
-            if (count > specialOffer.getNumberOfItems()) {
-                int newCount = count - specialOffer.getNumberOfItems();
-                totalPrice = startingPrice + calculatePrice(sku, newCount, specialOffer.getSpecialPrice());
-            } else {
-                totalPrice = startingPrice + specialOffer.getSpecialPrice();
-            }
+            int newCount = count - specialOffer.getNumberOfItems();
+            totalPrice = calculatePrice(sku, newCount, (startingPrice + specialOffer.getSpecialPrice()));
+
+//            if (count > specialOffer.getNumberOfItems()) {
+//                int newCount = count - specialOffer.getNumberOfItems();
+//                totalPrice = startingPrice + calculatePrice(sku, newCount, specialOffer.getSpecialPrice());
+//            } else {
+//                totalPrice = startingPrice + specialOffer.getSpecialPrice();
+//            }
         }
         return totalPrice;
     }
 }
-
-
-
-
-
-
