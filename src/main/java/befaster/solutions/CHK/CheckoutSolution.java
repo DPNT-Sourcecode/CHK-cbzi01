@@ -56,17 +56,20 @@ public class CheckoutSolution {
             foundSpecialOffer = specialOffer.getSku() == sku && count == specialOffer.getNumberOfItems();
             if (!foundSpecialOffer) {
                  return StockKeepingUnits.getStockKeepingPrice(sku) * count;
-            }6/
+            }
 
             if(count % specialOffer.getNumberOfItems() == 0) {
                 int newCount = count / specialOffer.getNumberOfItems(); //How many special offers I can find
                 totalPrice += specialOffer.getSpecialPrice() * newCount;
+            } else {
+                
             }
 
         }
         return totalPrice;
     }
 }
+
 
 
 
