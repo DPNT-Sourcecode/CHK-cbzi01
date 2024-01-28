@@ -26,12 +26,5 @@ public enum SpecialOffers {
         return specialPrice;
     }
 
-    public static int getSpecialOfferPrice(char sku) {
-        for (SpecialOffers specialOffers : SpecialOffers.values()) {
-            if(specialOffers.getSku() == sku) {
-                return specialOffers.getSpecialPrice();
-            }
-        }
-        return -1;
-    }
 }
+

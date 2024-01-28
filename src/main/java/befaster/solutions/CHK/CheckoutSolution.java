@@ -2,6 +2,7 @@ package befaster.solutions.CHK;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
@@ -48,33 +49,35 @@ public class CheckoutSolution {
 //        return totalPrice;
 //    }
 
-    private int calculatePrice(char sku, int count) {
-        int totalPrice = 0;
-        boolean foundSpecialOffer = SpecialOffers.getSpecialOfferPrice(sku) != -1;
 
-        if (!foundSpecialOffer) {
-            return StockKeepingUnits.getStockKeepingPrice(sku) * count;
+    private int getSpecialPriceFromSku(final char sku) {
+        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+            if (specialOffer.getSku() == sku) {
+                return specialOffer.getSpecialPrice();
+            }
         }
-
-
-
-//
-//        for (SpecialOffers specialOffer : SpecialOffers.values()) {
-//            foundSpecialOffer = specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems();
-//            if (!foundSpecialOffer) {
-//                return StockKeepingUnits.getStockKeepingPrice(sku) * count;
-//            }
-//
-//            if(count % specialOffer.getNumberOfItems() == 0) {
-//                int newCount = count / specialOffer.getNumberOfItems(); //How many special offers I can find
-//                totalPrice = specialOffer.getSpecialPrice() * newCount;
-//
-//            } else {
-//                int newCount = count - specialOffer.getNumberOfItems();
-//                totalPrice = specialOffer.getSpecialPrice() * newCount;
-//            }
-//
-//        }
-        return totalPrice;
+        return StockKeepingUnits.getStockKeepingPrice(sku);
     }
+
+    private int getHowManySpecialOffersICanFind(final char sku, final int count) {
+        int numberOfSpecialOffers = 0;
+        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+            if (specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems()) {
+                if(count % specialOffer.getNumberOfItems() == 0) {
+                    numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
+                } else {
+                    numberOfSpecialOffers = count - specialOffer.getNumberOfItems();
+                }
+            }
+        }
+        return numberOfSpecialOffers;
+    }
+
+
+    private int calculatePrice(char sku, int count) {
+        return getSpecialPriceFromSku(sku) * getHowManySpecialOffersICanFind(sku, count);
+    }
+
+
 }
+
