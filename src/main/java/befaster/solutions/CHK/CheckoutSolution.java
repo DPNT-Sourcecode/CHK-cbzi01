@@ -62,12 +62,13 @@ public class CheckoutSolution {
                 int newCount = count - specialOffer.getNumberOfItems();
                 return startingPrice + calculatePrice(sku, newCount, specialOffer.getSpecialPrice());
             } else {
-                totalPrice = specialOffer.getSpecialPrice();
+                totalPrice = startingPrice + specialOffer.getSpecialPrice();
             }
         }
         return totalPrice;
     }
 }
+
 
 
 
