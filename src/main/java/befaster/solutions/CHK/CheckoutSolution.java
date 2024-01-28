@@ -34,7 +34,7 @@ public class CheckoutSolution {
     private int calculatePrice(char sku, int count) {
         int specialPrice = 0;
         for (SpecialOffers specialOffer : SpecialOffers.values()) {
-            if (specialOffer.getSku() == sku && count == specialOffer.getNumberOfItems()) {
+            if (specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems()) {
                 return specialOffer.getSpecialPrice();
             } else {
                 specialPrice = StockKeepingUnits.getStockKeepingPrice(sku) * count;
@@ -43,3 +43,4 @@ public class CheckoutSolution {
         return specialPrice;
     }
 }
+
