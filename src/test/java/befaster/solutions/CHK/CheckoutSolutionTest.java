@@ -19,10 +19,11 @@ class CheckoutSolutionTest {
 //        assertEquals(260, checkoutSolution.checkout("AAAAAA"));
 //        assertEquals(160, checkoutSolution.checkout("AAAB"));
         assertEquals(175, checkoutSolution.checkout("AAABB"));
-//        assertEquals(190, checkoutSolution.checkout("AAABBD"));
-//        assertEquals(190, checkoutSolution.checkout("DABABA"));
-//        assertEquals(190, checkoutSolution.checkout("DABABA"));
-//        assertEquals(-1, checkoutSolution.checkout("E"));
+        assertEquals(190, checkoutSolution.checkout("AAABBD"));
+        assertEquals(190, checkoutSolution.checkout("DABABA"));
+        assertEquals(190, checkoutSolution.checkout("DABABA"));
+        assertEquals(-1, checkoutSolution.checkout("E"));
     }
 }
+
 

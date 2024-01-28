@@ -75,30 +75,35 @@ public class CheckoutSolution {
 
 
     private int calculatePrice(char sku, int count) {
-        int totalPrice = 0;
-        for (SpecialOffers specialOffer : SpecialOffers.values()) {
-            if (!(specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems())) {
-                return StockKeepingUnits.getStockKeepingPrice(sku) * count;
-            }
-
-            if (count % specialOffer.getNumberOfItems() == 0) {
-                int numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
-                totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers;
-                break;
-            } else {
-                int numberOfNonSpecialOffers = count - specialOffer.getNumberOfItems();
-                totalPrice = specialOffer.getSpecialPrice()
-                        + StockKeepingUnits.getStockKeepingPrice(sku) * numberOfNonSpecialOffers;
-                break;
-            }
+        if(!SpecialOffers.hasSpecialOffer(sku, count)) {
+            return StockKeepingUnits.getStockKeepingPrice(sku) * count;
         }
-        return totalPrice;
+
+//        int totalPrice = 0;
+//        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+//            if (!(specialOffer.getSku() == sku && count >= specialOffer.getNumberOfItems())) {
+//                return StockKeepingUnits.getStockKeepingPrice(sku) * count;
+//            }
+//
+//            if (count % specialOffer.getNumberOfItems() == 0) {
+//                int numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
+//                totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers;
+//                break;
+//            } else {
+//                int numberOfNonSpecialOffers = count - specialOffer.getNumberOfItems();
+//                totalPrice = specialOffer.getSpecialPrice()
+//                        + StockKeepingUnits.getStockKeepingPrice(sku) * numberOfNonSpecialOffers;
+//                break;
+//            }
+//        }
+        return 0;
     }
 
 
 
 
 }
+
 
 
 
