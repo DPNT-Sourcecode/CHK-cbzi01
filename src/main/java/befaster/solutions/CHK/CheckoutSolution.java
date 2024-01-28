@@ -41,17 +41,16 @@ public class CheckoutSolution {
         }
 
         int totalPrice;
+        int numberOfSpecialOffers = Math.floorDiv(count, specialOffer.getNumberOfItems());
+        totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers;
 
-        if (count % specialOffer.getNumberOfItems() == 0) {
-            int numberOfSpecialOffers = count / specialOffer.getNumberOfItems();
-            totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers;
-        } else {
-            int numberOfSpecialOffers = Math.floorDiv(count, specialOffer.getNumberOfItems());
-            int numberOfNonSpecialOffers = count - specialOffer.getNumberOfItems();
-            totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers
-                    + StockKeepingUnits.getStockKeepingPrice(sku) * numberOfNonSpecialOffers;
+        if(count % specialOffer.getNumberOfItems() != 0) {
+            int numberOfNonSpecialOffers = count - (specialOffer.getNumberOfItems() * numberOfSpecialOffers);
+            totalPrice += StockKeepingUnits.getStockKeepingPrice(sku) * numberOfNonSpecialOffers;
         }
+
         return totalPrice;
     }
 
 }
+
