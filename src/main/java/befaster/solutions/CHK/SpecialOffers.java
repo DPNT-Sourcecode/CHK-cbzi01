@@ -57,5 +57,3 @@ public class SpecialOffers {
         return validOffers;
     }
 }
-
-

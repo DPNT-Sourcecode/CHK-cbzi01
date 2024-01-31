@@ -34,4 +34,3 @@ public class PriceTable {
         return -1;
     }
 }
-

@@ -96,4 +96,3 @@ public final class SpecialOffer implements Comparable<SpecialOffer> {
         return sb.toString();
     }
 }
-
