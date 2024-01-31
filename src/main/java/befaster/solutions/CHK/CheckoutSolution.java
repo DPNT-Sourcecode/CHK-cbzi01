@@ -1,55 +1,55 @@
 package befaster.solutions.CHK;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        Map<Character, Integer> skusCount = groupAndCountNumberOfSameSkus(skus);
-
-        int totalSum = 0;
-        for (Map.Entry<Character, Integer> entry : skusCount.entrySet()) {
-            char sku = entry.getKey();
-            int count = entry.getValue();
-            if (StockKeepingUnits.getStockKeepingPrice(sku) == -1) {
-                return -1;
-            }
-            totalSum += calculatePrice(sku, count);
-        }
-        return totalSum;
+        return getTotal(groupAndCountNumberOfSameSkus(skus));
     }
 
-    private Map<Character, Integer> groupAndCountNumberOfSameSkus(final String skus) {
-        Map<Character, Integer> skusCount = new HashMap<>();
-        for (char sku : skus.toCharArray()) {
-            if (skusCount.containsKey(sku)) {
-                skusCount.put(sku, skusCount.get(sku) + 1);
-            } else {
-                skusCount.put(sku, 1);
-            }
-        }
+    private Map<String, Integer> groupAndCountNumberOfSameSkus(final String skus) {
+        Map<String, Integer> skusCount = new HashMap<>();
+        Arrays.stream(skus.split(""))
+                .forEach(sku -> {
+                    if (skusCount.containsKey(sku)) {
+                        skusCount.put(sku, skusCount.get(sku) + 1);
+                    } else {
+                        skusCount.put(sku, 1);
+                    }
+                });
+
         return skusCount;
     }
 
-    private int calculatePrice(char sku, int count) {
-        SpecialOffers specialOffer = SpecialOffers.getSpecialOffer(sku);
-        boolean hasSpecialOffer = Objects.nonNull(specialOffer) && count >= specialOffer.getNumberOfItems();
+    private int getTotal(final Map<String, Integer> cart) {
+        List<SpecialOffer> specialOffers = SpecialOffers.getValidOffersFromCart(cart);
+        Map<String, Integer> cartCopy = new HashMap<>(cart);
+        int totalValueOfItemsWithDiscount = specialOffers.stream()
+                .mapToInt(specialOffer -> applyDiscounts(specialOffer, cartCopy))
+                .reduce(0, Integer::sum);
 
-        if (!hasSpecialOffer) {
-            return StockKeepingUnits.getStockKeepingPrice(sku) * count;
+        int totalValueOfItemsWithoutDiscount = cartCopy.entrySet().stream()
+                .mapToInt(entry -> PriceTable.getPriceBySku(entry.getKey()) * entry.getValue())
+                .reduce(0, Integer::sum);
+
+        return totalValueOfItemsWithDiscount + totalValueOfItemsWithoutDiscount;
+    }
+
+    private int applyDiscounts(final SpecialOffer specialOffer, final Map<String, Integer> cart) {
+        String sku = specialOffer.getSku().name();
+        int totalPriceWithDiscount = 0;
+        int numberOfItemsMissingVerification = cart.get(sku);
+        int maximumNumberOfItemsWithDiscountAvailable = specialOffer.getNumberOfItems();
+        if (numberOfItemsMissingVerification >= maximumNumberOfItemsWithDiscountAvailable) {
+            totalPriceWithDiscount = specialOffer.getFinalSellingPrice();
+            numberOfItemsMissingVerification -= specialOffer.getNumberOfItems();
+            cart.put(sku, numberOfItemsMissingVerification);
         }
-
-        int totalPrice;
-        int numberOfSpecialOffers = Math.floorDiv(count, specialOffer.getNumberOfItems());
-        totalPrice = specialOffer.getSpecialPrice() * numberOfSpecialOffers;
-
-        if(count % specialOffer.getNumberOfItems() != 0) {
-            int numberOfNonSpecialOffers = count - (specialOffer.getNumberOfItems() * numberOfSpecialOffers);
-            totalPrice += StockKeepingUnits.getStockKeepingPrice(sku) * numberOfNonSpecialOffers;
-        }
-
-        return totalPrice;
+        return totalPriceWithDiscount;
     }
 
 }
+
