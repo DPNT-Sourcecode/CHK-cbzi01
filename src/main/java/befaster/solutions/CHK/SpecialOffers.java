@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+
 public enum SpecialOffers {
     A('A', 3, 130),
     B('B', 2, 45);
@@ -7,6 +8,7 @@ public enum SpecialOffers {
     private final char sku;
     private final int numberOfItems;
     private final int specialPrice;
+
 
     SpecialOffers(final char sku, final int numberOfItems, final int specialPrice) {
         this.sku = sku;
@@ -27,7 +29,7 @@ public enum SpecialOffers {
     }
 
     public static SpecialOffers getSpecialOffer(final char sku) {
-        for (SpecialOffers specialOffer : SpecialOffers.values()) {
+        for (SpecialOffers specialOffer : befaster.solutions.CHK.SpecialOffers.values()) {
             if (specialOffer.getSku() == sku) {
                 return specialOffer;
             }
