@@ -17,6 +17,9 @@ public class CheckoutSolution {
 
     private Map<String, Integer> groupAndCountNumberOfSameSkus(final String skus) {
         Map<String, Integer> skusCount = new HashMap<>();
+        if(skus == null || skus.isEmpty()){
+            return skusCount;
+        }
         Arrays.stream(skus.split(""))
                 .forEach(sku -> {
                     if(!isSkuValid(sku)){
@@ -69,5 +72,6 @@ public class CheckoutSolution {
     }
 
 }
+
 
 

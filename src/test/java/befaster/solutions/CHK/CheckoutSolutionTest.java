@@ -154,7 +154,7 @@ class CheckoutSolutionTest {
     void testWhenReceiveEmptyInputItMustReturnNegativeOne() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         int result = checkoutSolution.checkout("");
-        int expectedResult = -1;
+        int expectedResult = 0;
 
         assertEquals(expectedResult, result);
     }
@@ -179,5 +179,6 @@ class CheckoutSolutionTest {
 
 
 }
+
 
 
