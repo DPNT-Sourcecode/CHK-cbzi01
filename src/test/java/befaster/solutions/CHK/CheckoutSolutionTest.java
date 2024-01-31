@@ -64,7 +64,7 @@ class CheckoutSolutionTest {
     void testIfWhenCheckoutWithFiveEqualItensItgetsTheSpecialPricePlusTheOriginalPrice() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         int result = checkoutSolution.checkout("AAAAA");
-        int expectedResult = 230;
+        int expectedResult = 200;
 
         assertEquals(expectedResult, result);
     }
@@ -73,7 +73,7 @@ class CheckoutSolutionTest {
     void testIfWhenCheckoutWithSixEqualItensItgetsTheSpecialPricePlusTheOriginalPrice() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         int result = checkoutSolution.checkout("AAAAAA");
-        int expectedResult = 260;
+        int expectedResult = 250;
 
         assertEquals(expectedResult, result);
     }
@@ -117,19 +117,39 @@ class CheckoutSolutionTest {
     @Test
     void testIfWhenCheckoutWithInvalidItenItGetsNegativeOne() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        int result = checkoutSolution.checkout("E");
+        int result = checkoutSolution.checkout("F");
         int expectedResult = -1;
 
         assertEquals(expectedResult, result);
     }
+
     @Test
     void testIfWhenCheckoutWithMultipleDifferentsItensItGetsCorrectPrice() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         int result = checkoutSolution.checkout("ABCDCBAABCABBAAA");
-        int expectedResult = 505;
+        int expectedResult = 510;
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testIfWhenCheckoutWithMultipleItemsDiscountItensItGetsCorrectPrice() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("EEB");
+        int expectedResult = 80;
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testIfWhenCheckoutWithMultipleItemsDiscountItensItGetstheBestPrice() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("EEBBB");
+        int expectedResult = 125;
 
         assertEquals(expectedResult, result);
     }
 
 
 }
+
