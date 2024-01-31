@@ -2,6 +2,8 @@ package befaster.solutions.CHK;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CheckoutSolutionTest {
@@ -176,9 +178,22 @@ class CheckoutSolutionTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    void test() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        List<String> skus = List.of("ABCDE", "AAAAAAAAAA", "EEEEBB");
+        List<Integer> expectedResults = List.of(155, 400, 160);
+        skus.forEach(sku -> {
+            int result = checkoutSolution.checkout(sku);
+            int expectedResult = expectedResults.get(skus.indexOf(sku));
+            assertEquals(expectedResult, result);
+        });
+    }
+
 
 
 }
+
 
 
 
