@@ -7,13 +7,21 @@ import java.util.Map;
 
 public class CheckoutSolution {
     public Integer checkout(String skus) {
-        return getTotal(groupAndCountNumberOfSameSkus(skus));
+        try {
+            Map<String, Integer> cart = groupAndCountNumberOfSameSkus(skus);
+            return getTotal(cart);
+        }catch (IllegalArgumentException e){
+            return -1;
+        }
     }
 
     private Map<String, Integer> groupAndCountNumberOfSameSkus(final String skus) {
         Map<String, Integer> skusCount = new HashMap<>();
         Arrays.stream(skus.split(""))
                 .forEach(sku -> {
+                    if(!isSkuValid(sku)){
+                        throw new IllegalArgumentException("Invalid sku received: %s".formatted(sku));
+                    }
                     if (skusCount.containsKey(sku)) {
                         skusCount.put(sku, skusCount.get(sku) + 1);
                     } else {
@@ -22,6 +30,15 @@ public class CheckoutSolution {
                 });
 
         return skusCount;
+    }
+
+    private boolean isSkuValid(final String sku) {
+        try {
+            StockKeepingUnits.valueOf(sku);
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
     }
 
     private int getTotal(final Map<String, Integer> cart) {
@@ -52,4 +69,5 @@ public class CheckoutSolution {
     }
 
 }
+
 

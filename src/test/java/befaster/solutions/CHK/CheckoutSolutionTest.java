@@ -150,6 +150,34 @@ class CheckoutSolutionTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    void testWhenReceiveEmptyInputItMustReturnNegativeOne() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("");
+        int expectedResult = -1;
+
+        assertEquals(expectedResult, result);
+    }
+    @Test
+    void testWhenReceiveLowerLetterInputItMustReturnNegativeOne() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("ABCa");
+        int expectedResult = -1;
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testWhenReceiveLowerLetterThatNotExistsInputItMustReturnNegativeOne() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout("AxA");
+        int expectedResult = -1;
+
+        assertEquals(expectedResult, result);
+    }
+
+
 
 }
+
 
