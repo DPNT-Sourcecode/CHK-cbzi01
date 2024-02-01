@@ -35,19 +35,6 @@ public class PriceTable {
         PRICE_TABLE.put(StockKeepingUnits.Z, 21);
     }
 
-    public static int getPriceBySku(String sku) {
-        try {
-            StockKeepingUnits stockKeepingUnits = StockKeepingUnits.valueOf(sku);
-            int result = -1;
-            if (PRICE_TABLE.containsKey(stockKeepingUnits)) {
-                result = PRICE_TABLE.get(StockKeepingUnits.valueOf(sku));
-            }
-            return result;
-        } catch (IllegalArgumentException e) {
-            return -1;
-        }
-    }
-
     public static int getPriceBySku(StockKeepingUnits sku) {
         if (PRICE_TABLE.containsKey(sku)) {
             return PRICE_TABLE.get(sku);
@@ -55,3 +42,4 @@ public class PriceTable {
         return -1;
     }
 }
+

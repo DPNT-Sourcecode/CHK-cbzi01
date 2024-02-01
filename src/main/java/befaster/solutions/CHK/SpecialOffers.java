@@ -41,6 +41,7 @@ public class SpecialOffers {
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.V, 2, 90));
         //3V for 130
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.V, 3, 130));
+        //group discount offer
         //buy any 3 of (S,T,X,Y,Z) for 45
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.S, 3, 45));
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.T, 3, 45));
@@ -83,3 +84,4 @@ public class SpecialOffers {
         return specialOffersToBeApplied;
     }
 }
+
