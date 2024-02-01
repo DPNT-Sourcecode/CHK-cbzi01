@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +15,7 @@ public class SpecialOffers {
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.A, 5, 200));
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.B, 2, 45));
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.E, 2, new SpecialOffer(StockKeepingUnits.B, 1, 0)));
+        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.F, 2, new SpecialOffer(StockKeepingUnits.F, 1, 0)));
     }
 
     private static List<SpecialOffer> getAllAvailableOffersBySkuAndNumberOfItems(StockKeepingUnits sku, int numberOfItems) {
@@ -52,3 +52,4 @@ public class SpecialOffers {
         return specialOffersToBeApplied;
     }
 }
+

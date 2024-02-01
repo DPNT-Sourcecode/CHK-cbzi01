@@ -122,7 +122,7 @@ class CheckoutSolutionTest {
     @Test
     void testIfWhenCheckoutWithInvalidItenItGetsNegativeOne() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        int result = checkoutSolution.checkout("F");
+        int result = checkoutSolution.checkout("X");
         int expectedResult = -1;
 
         assertEquals(expectedResult, result);
@@ -174,10 +174,11 @@ class CheckoutSolutionTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"ABCDE:155", "AAAAAAAAAA:400", "EEEEBB:160"}, delimiter = ':')
+    @CsvSource(value = {"ABCDE:155", "AAAAAAAAAA:400", "EEEEBB:160", "FFF:20"}, delimiter = ':')
     void testWhenReceiveValidInputsItGetsTheCorrectValue(String input, String expected) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
             int result = checkoutSolution.checkout(input);
             assertEquals(Integer.parseInt(expected), result);
     }
 }
+

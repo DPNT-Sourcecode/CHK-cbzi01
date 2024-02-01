@@ -12,6 +12,7 @@ public class PriceTable {
         PRICE_TABLE.put(StockKeepingUnits.C, 20);
         PRICE_TABLE.put(StockKeepingUnits.D, 15);
         PRICE_TABLE.put(StockKeepingUnits.E, 40);
+        PRICE_TABLE.put(StockKeepingUnits.F, 10);
     }
 
     public static int getPriceBySku(String sku) {
@@ -34,3 +35,4 @@ public class PriceTable {
         return -1;
     }
 }
+
