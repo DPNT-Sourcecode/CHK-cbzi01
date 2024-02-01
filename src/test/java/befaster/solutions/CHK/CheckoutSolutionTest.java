@@ -174,11 +174,21 @@ class CheckoutSolutionTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"ABCDE:155", "AAAAAAAAAA:400", "EEEEBB:160", "FFF:20"}, delimiter = ':')
+    @CsvSource(value = {"ABCDE:155", "AAAAAAAAAA:400", "EEEEBB:160",}, delimiter = ':')
     void testWhenReceiveValidInputsItGetsTheCorrectValue(String input, String expected) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
             int result = checkoutSolution.checkout(input);
             assertEquals(Integer.parseInt(expected), result);
     }
+
+
+    @ParameterizedTest
+    @CsvSource(value = {"FF:20", "FFFF:30", "FFFFFF:40",}, delimiter = ':')
+    void testForCHK_R3(String input, String expected) {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout(input);
+        assertEquals(Integer.parseInt(expected), result);
+    }
 }
+
 
