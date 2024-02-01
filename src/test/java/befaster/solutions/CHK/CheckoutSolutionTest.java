@@ -2,6 +2,7 @@ package befaster.solutions.CHK;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
@@ -185,7 +186,7 @@ class CheckoutSolutionTest {
     }
 
     @ParameterizedTest
-    @ValueSource(String = "ABCDE", "AAAAAAAAAA", "EEEEBB" )
+    @CsvSource(value = {"ABCDE:155", "AAAAAAAAAA:400", "EEEEBB:160"}, delimiter = ':')
     void test() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         List<String> skus = List.of("ABCDE", "AAAAAAAAAA", "EEEEBB");
@@ -200,4 +201,5 @@ class CheckoutSolutionTest {
 
 
 }
+
 
