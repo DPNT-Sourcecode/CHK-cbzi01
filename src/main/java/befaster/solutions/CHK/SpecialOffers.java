@@ -26,7 +26,7 @@ public class SpecialOffers {
         //10H for 80
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.H, 10, 80));
         //2K for 120
-        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.K, 2, 150));
+        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.K, 2, 120));
         //3N get one M free
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.N, 3, new SpecialOffer(StockKeepingUnits.M, 1,0)));
         //5P for 200
@@ -83,5 +83,3 @@ public class SpecialOffers {
         return specialOffersToBeApplied;
     }
 }
-
-
