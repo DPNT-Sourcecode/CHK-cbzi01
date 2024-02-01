@@ -84,4 +84,3 @@ public class SpecialOffers {
         return specialOffersToBeApplied;
     }
 }
-
