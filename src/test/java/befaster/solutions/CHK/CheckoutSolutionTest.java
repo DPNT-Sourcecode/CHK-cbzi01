@@ -1,6 +1,8 @@
 package befaster.solutions.CHK;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
@@ -125,14 +127,6 @@ class CheckoutSolutionTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    void testIfWhenCheckoutWithMultipleDifferentsItensItGetsCorrectPrice() {
-        CheckoutSolution checkoutSolution = new CheckoutSolution();
-        int result = checkoutSolution.checkout("ABCDCBAABCABBAAA");
-        int expectedResult = 510;
-
-        assertEquals(expectedResult, result);
-    }
 
     @Test
     void testIfWhenCheckoutWithMultipleItemsDiscountItensItGetsCorrectPrice() {
@@ -190,6 +184,20 @@ class CheckoutSolutionTest {
         });
     }
 
+    @ParameterizedTest
+    @ValueSource(String = "ABCDE", "AAAAAAAAAA", "EEEEBB" )
+    void test() {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        List<String> skus = List.of("ABCDE", "AAAAAAAAAA", "EEEEBB");
+        List<Integer> expectedResults = List.of(155, 400, 160);
+        skus.forEach(sku -> {
+            int result = checkoutSolution.checkout(sku);
+            int expectedResult = expectedResults.get(skus.indexOf(sku));
+            assertEquals(expectedResult, result);
+        });
+    }
+
 
 
 }
+
