@@ -6,33 +6,35 @@ public final class SpecialOffer implements Comparable<SpecialOffer> {
     private final StockKeepingUnits sku;
     private final Integer numberOfItems;
     private final Integer finalSellingPrice;
-    private final Double discountPercentage;
-    private final SpecialOffer specialOffer;
+    private final SpecialOffer newOffer;
+
+    private Double discountPercentage;
 
     private SpecialOffer(final StockKeepingUnits sku,
                          final Integer numberOfItems,
                          final Integer finalSellingPrice,
-                         final SpecialOffer specialOffer,
-                         final Double discountPercentage) {
+                         final SpecialOffer newOffer) {
         this.sku = sku;
         this.numberOfItems = numberOfItems;
         this.finalSellingPrice = finalSellingPrice;
-        this.specialOffer = specialOffer;
-        this.discountPercentage = discountPercentage;
+        this.newOffer = newOffer;
+        this.discountPercentage = 0.0;
     }
 
     public SpecialOffer(StockKeepingUnits sku, int numberOfItems, int finalSellingPrice) {
-        this(sku, numberOfItems, finalSellingPrice, null, calculateDiscountPercentage(sku, numberOfItems, finalSellingPrice));
+        this(sku, numberOfItems, finalSellingPrice, null);
+        this.discountPercentage = calculateDiscountPercentage(sku, numberOfItems, finalSellingPrice);
     }
 
-    public SpecialOffer(StockKeepingUnits sku, int numberOfItems, SpecialOffer specialOffer) {
-        this(sku, numberOfItems, null, specialOffer, calculateDiscountPercentage(sku, specialOffer.getNumberOfItems(), specialOffer.getFinalSellingPrice()));
+    public SpecialOffer(StockKeepingUnits sku, int numberOfItems, SpecialOffer newOffer) {
+        this(sku, numberOfItems, null, newOffer);
+        newOffer.discountPercentage = calculateDiscountPercentage(sku, newOffer.getNumberOfItems(), newOffer.getFinalSellingPrice());
     }
 
-    private static Double calculateDiscountPercentage(StockKeepingUnits sku, int numberOfItems, int finalSellingPrice) {
+    private Double calculateDiscountPercentage(StockKeepingUnits sku, int numberOfItems, int finalSellingPrice){
         double originalPrice = (PriceTable.getPriceBySku(sku) * numberOfItems);
         double discountPrice = originalPrice - finalSellingPrice;
-        return (discountPrice / originalPrice) * 100;
+        return (discountPrice/originalPrice) * 100;
     }
 
     public StockKeepingUnits getSku() {
@@ -47,11 +49,12 @@ public final class SpecialOffer implements Comparable<SpecialOffer> {
         return finalSellingPrice;
     }
 
-    public SpecialOffer getSpecialOffer() {
-        if (Objects.nonNull(specialOffer)) {
-            return specialOffer;
-        }
-        return this;
+    public SpecialOffer getNewOffer() {
+        return newOffer;
+    }
+
+    public boolean hasNewOffer() {
+        return Objects.nonNull(newOffer);
     }
 
     @Override
@@ -66,7 +69,7 @@ public final class SpecialOffer implements Comparable<SpecialOffer> {
         if (!Objects.equals(finalSellingPrice, that.finalSellingPrice))
             return false;
         if (!discountPercentage.equals(that.discountPercentage)) return false;
-        return Objects.equals(specialOffer, that.specialOffer);
+        return Objects.equals(newOffer, that.newOffer);
     }
 
     @Override
@@ -75,7 +78,7 @@ public final class SpecialOffer implements Comparable<SpecialOffer> {
         result = 31 * result + numberOfItems.hashCode();
         result = 31 * result + (finalSellingPrice != null ? finalSellingPrice.hashCode() : 0);
         result = 31 * result + discountPercentage.hashCode();
-        result = 31 * result + (specialOffer != null ? specialOffer.hashCode() : 0);
+        result = 31 * result + (newOffer != null ? newOffer.hashCode() : 0);
         return result;
     }
 
@@ -91,7 +94,7 @@ public final class SpecialOffer implements Comparable<SpecialOffer> {
         sb.append(", numberOfItems=").append(numberOfItems);
         sb.append(", finalSellingPrice=").append(finalSellingPrice);
         sb.append(", discountPercentage=").append(discountPercentage);
-        sb.append(", specialOffer=").append(specialOffer);
+        sb.append(", specialOffer=").append(newOffer);
         sb.append('}');
         return sb.toString();
     }
