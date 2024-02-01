@@ -120,9 +120,9 @@ class CheckoutSolutionTest {
     }
 
     @Test
-    void testIfWhenCheckoutWithInvalidItenItGetsNegativeOne() {
+    void testIfWhenCheckoutWithInvalidItemItGetsNegativeOne() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        int result = checkoutSolution.checkout("X");
+        int result = checkoutSolution.checkout("x");
         int expectedResult = -1;
 
         assertEquals(expectedResult, result);
@@ -190,5 +190,3 @@ class CheckoutSolutionTest {
         assertEquals(Integer.parseInt(expected), result);
     }
 }
-
-
