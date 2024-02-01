@@ -173,33 +173,14 @@ class CheckoutSolutionTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    void test() {
-        CheckoutSolution checkoutSolution = new CheckoutSolution();
-        List<String> skus = List.of("ABCDE", "AAAAAAAAAA", "EEEEBB");
-        List<Integer> expectedResults = List.of(155, 400, 160);
-        skus.forEach(sku -> {
-            int result = checkoutSolution.checkout(sku);
-            int expectedResult = expectedResults.get(skus.indexOf(sku));
-            assertEquals(expectedResult, result);
-        });
-    }
-
     @ParameterizedTest
     @CsvSource(value = {"ABCDE:155", "AAAAAAAAAA:400", "EEEEBB:160"}, delimiter = ':')
-    void test() {
+    void testWhenReceiveValidInputsItGetsTheCorrectValue(String input, String expected) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-        List<String> skus = List.of("ABCDE", "AAAAAAAAAA", "EEEEBB");
-        List<Integer> expectedResults = List.of(155, 400, 160);
-        skus.forEach(sku -> {
-            int result = checkoutSolution.checkout(sku);
-            int expectedResult = expectedResults.get(skus.indexOf(sku));
-            assertEquals(expectedResult, result);
-        });
+            int result = checkoutSolution.checkout(input);
+            assertEquals(Integer.parseInt(expected), result);
     }
-
-
-
 }
+
 
 
