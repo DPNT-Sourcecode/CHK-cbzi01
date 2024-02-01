@@ -17,7 +17,7 @@ public class PriceTable {
         PRICE_TABLE.put(StockKeepingUnits.H, 10);
         PRICE_TABLE.put(StockKeepingUnits.I, 35);
         PRICE_TABLE.put(StockKeepingUnits.J, 60);
-        PRICE_TABLE.put(StockKeepingUnits.K, 80);
+        PRICE_TABLE.put(StockKeepingUnits.K, 70);
         PRICE_TABLE.put(StockKeepingUnits.L, 90);
         PRICE_TABLE.put(StockKeepingUnits.M, 15);
         PRICE_TABLE.put(StockKeepingUnits.N, 40);
@@ -25,14 +25,14 @@ public class PriceTable {
         PRICE_TABLE.put(StockKeepingUnits.P, 50);
         PRICE_TABLE.put(StockKeepingUnits.Q, 30);
         PRICE_TABLE.put(StockKeepingUnits.R, 50);
-        PRICE_TABLE.put(StockKeepingUnits.S, 30);
+        PRICE_TABLE.put(StockKeepingUnits.S, 20);
         PRICE_TABLE.put(StockKeepingUnits.T, 20);
         PRICE_TABLE.put(StockKeepingUnits.U, 40);
         PRICE_TABLE.put(StockKeepingUnits.V, 50);
         PRICE_TABLE.put(StockKeepingUnits.W, 20);
-        PRICE_TABLE.put(StockKeepingUnits.X, 90);
-        PRICE_TABLE.put(StockKeepingUnits.Y, 10);
-        PRICE_TABLE.put(StockKeepingUnits.Z, 50);
+        PRICE_TABLE.put(StockKeepingUnits.X, 17);
+        PRICE_TABLE.put(StockKeepingUnits.Y, 20);
+        PRICE_TABLE.put(StockKeepingUnits.Z, 21);
     }
 
     public static int getPriceBySku(String sku) {
@@ -55,3 +55,4 @@ public class PriceTable {
         return -1;
     }
 }
+
