@@ -15,7 +15,7 @@ public class SpecialOffers {
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.A, 5, 200));
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.B, 2, 45));
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.E, 2, new SpecialOffer(StockKeepingUnits.B, 1, 0)));
-        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.F, 2, new SpecialOffer(StockKeepingUnits.F, 1, 0)));
+        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.F, 3, 20));
     }
 
     private static List<SpecialOffer> getAllAvailableOffersBySkuAndNumberOfItems(StockKeepingUnits sku, int numberOfItems) {
@@ -52,4 +52,5 @@ public class SpecialOffers {
         return specialOffersToBeApplied;
     }
 }
+
 
