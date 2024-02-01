@@ -198,5 +198,14 @@ class CheckoutSolutionTest {
         assertEquals(Integer.parseInt(expected), result);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"K:70", "S:20", "X:17"}, delimiter = ':')
+    void testForCHK_R5(String input, String expected) {
+        CheckoutSolution checkoutSolution = new CheckoutSolution();
+        int result = checkoutSolution.checkout(input);
+        assertEquals(Integer.parseInt(expected), result);
+    }
+
 }
+
 
