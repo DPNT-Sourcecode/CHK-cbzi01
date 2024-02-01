@@ -199,7 +199,7 @@ class CheckoutSolutionTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"K:70", "S:20", "X:17", "KK:120", "KKK:190", "KKKK:240"}, delimiter = ':')
+    @CsvSource(value = {"STX:45", "STXSTX:90", "SSSZ:65"}, delimiter = ':')
     void testForCHK_R5(String input, String expected) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         int result = checkoutSolution.checkout(input);
@@ -207,3 +207,4 @@ class CheckoutSolutionTest {
     }
 
 }
+
