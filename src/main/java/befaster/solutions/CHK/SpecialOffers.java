@@ -11,22 +11,42 @@ public class SpecialOffers {
     private static final List<SpecialOffer> SPECIAL_OFFERS = new ArrayList<>();
 
     static {
+        //3A for 130
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.A, 3, 130));
+        //5A for 200
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.A, 5, 200));
+        //2B for 45
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.B, 2, 45));
+        //2E get one B free
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.E, 2, new SpecialOffer(StockKeepingUnits.B, 1, 0)));
-        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.F, 3, 20)); //2F get one F free. The offer requires you to have 3 Fs in the basket
+        //2F get one F free. The offer requires you to have 3 Fs in the basket
+        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.F, 3, 20));
+        //5H for 45
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.H, 5, 45));
+        //10H for 80
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.H, 10, 80));
+        //2K for 120
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.K, 2, 150));
+        //3N get one M free
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.N, 3, new SpecialOffer(StockKeepingUnits.M, 1,0)));
+        //5P for 200
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.P, 5, 200));
+        //3Q for 80
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.Q, 3, 80));
+        //3R get one Q free
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.R, 3, new SpecialOffer(StockKeepingUnits.Q, 1, 0)));
-        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.U, 4, 120)); //3U get one U free. The offer requires you to have 4 Us in the basket
+        //3U get one U free. The offer requires you to have 4 Us in the basket
+        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.U, 4, 120));
+        //2V for 90
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.V, 2, 90));
+        //3V for 130
         SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.V, 3, 130));
-
+        //buy any 3 of (S,T,X,Y,Z) for 45
+        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.S, 3, 45));
+        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.T, 3, 45));
+        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.X, 3, 45));
+        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.Y, 3, 45));
+        SPECIAL_OFFERS.add(new SpecialOffer(StockKeepingUnits.Z, 3, 45));
     }
 
     private static List<SpecialOffer> getAllAvailableOffersBySkuAndNumberOfItems(StockKeepingUnits sku, int numberOfItems) {
@@ -63,4 +83,5 @@ public class SpecialOffers {
         return specialOffersToBeApplied;
     }
 }
+
 
