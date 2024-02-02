@@ -3,11 +3,8 @@ package befaster.solutions.CHK;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CheckoutSolutionTest {
 
@@ -155,6 +152,7 @@ class CheckoutSolutionTest {
 
         assertEquals(expectedResult, result);
     }
+
     @Test
     void testWhenReceiveLowerLetterInputItMustReturnNegativeOne() {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
@@ -177,8 +175,8 @@ class CheckoutSolutionTest {
     @CsvSource(value = {"ABCDE:155", "AAAAAAAAAA:400", "EEEEBB:160",}, delimiter = ':')
     void testWhenReceiveValidInputsItGetsTheCorrectValue(String input, String expected) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
-            int result = checkoutSolution.checkout(input);
-            assertEquals(Integer.parseInt(expected), result);
+        int result = checkoutSolution.checkout(input);
+        assertEquals(Integer.parseInt(expected), result);
     }
 
 
@@ -199,7 +197,10 @@ class CheckoutSolutionTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"STX:45", "STXSTX:90", "SSSZ:65","S:20", "T:20", "X:17", "SS:40", "SSS:45"}, delimiter = ':')
+    @CsvSource(value = {"STX:45", "STXSTX:90", "SSSZ:65", "S:20", "T:20", "X:17", "SS:40", "SSS:45",
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ:1602",
+            "LGCKAQXFOSKZGIWHNRNDITVBUUEOZXPYAVFDEPTBMQLYJRSMJCWH:1602",
+            "AAAAAPPPPPUUUUEEBRRRQAAAHHHHHHHHHHKKVVVBBNNNMFFFQQQVVHHHHHSTX:1655"}, delimiter = ':')
     void testForCHK_R5(String input, String expected) {
         CheckoutSolution checkoutSolution = new CheckoutSolution();
         int result = checkoutSolution.checkout(input);
@@ -207,4 +208,5 @@ class CheckoutSolutionTest {
     }
 
 }
+
 
