@@ -75,7 +75,7 @@ public class CheckoutSolution {
     private int getTotalValueOfItemsWithGroupDiscountOffer(final String skus, StringBuilder skusWithoutDiscountOffer) {
         List<StockKeepingUnits> stockKeepingUnitsList = new ArrayList<>(getStockKeepingUnitsWithGroupDiscountOffer(skus));
         int totalValueOfItemsWithGroupDiscountOffer = 0;
-        if(!stockKeepingUnitsList.isEmpty()) {
+        if(stockKeepingUnitsList.size() >= groupDiscountOffer.numberOfItems()) {
             if (stockKeepingUnitsList.size() % groupDiscountOffer.numberOfItems() == 0) {
                 //Can have more than one discount group
                 int eligibleOffers = stockKeepingUnitsList.size() / groupDiscountOffer.numberOfItems();
@@ -93,4 +93,5 @@ public class CheckoutSolution {
         return totalValueOfItemsWithGroupDiscountOffer;
     }
 }
+
 
